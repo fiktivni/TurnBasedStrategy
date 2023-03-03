@@ -5,23 +5,19 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     private Vector3 targetPosition;
-
-    [SerializeField] private Animator unitAnimator;
-
     static string isWalking = "IsWalking";
+    [SerializeField] private Animator unitAnimator;
+    [SerializeField] float stoppingDistance = .1f;
+    [SerializeField] float moveSpeed = 4f;
+    [SerializeField] float rotateSpeed = 10f;
 
     private void Update()
     {
-        
-
-        float stoppingDistance = .1f;
-
         if(Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
-            float moveSpeed = 4f;
             transform.position += moveSpeed * moveDirection * Time.deltaTime;
-
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
             unitAnimator.SetBool(isWalking, true);
         }
         else
