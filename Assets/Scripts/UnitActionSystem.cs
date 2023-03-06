@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitActionSystem : MonoBehaviour
 {
+
+    private event EventHandler OnSelectedUnitChange;
+
     [SerializeField] private Unit selectedUnit;
 
     [SerializeField] private LayerMask unitsLayerMask;
@@ -29,11 +33,30 @@ public class UnitActionSystem : MonoBehaviour
         {
             if (hitInfo.transform.TryGetComponent<Unit>(out Unit unit))
             {
-                selectedUnit = unit;
+                SetSelectedUnit(unit);
                 return true;
             }
         }
 
         return false;
+    }
+
+    private void SetSelectedUnit(Unit unit)
+    {
+        selectedUnit = unit;
+
+        OnSelectedUnitChange?.Invoke(this, EventArgs.Empty);
+
+        // Does the same thing as this code would.
+        //
+        //if (OnSelectedUnitChange != null)
+        //{
+        //    OnSelectedUnitChange(this, EventArgs.Empty);
+        //}
+    }
+
+    public Unit GetSelectedUnit()
+    {
+        return selectedUnit;
     }
 }
