@@ -5,13 +5,26 @@ using UnityEngine;
 
 public class UnitActionSystem : MonoBehaviour
 {
-
-    private event EventHandler OnSelectedUnitChange;
+    public static UnitActionSystem Instance { get; private set; }
+ 
+    public event EventHandler OnSelectedUnitChanged;
 
     [SerializeField] private Unit selectedUnit;
 
     [SerializeField] private LayerMask unitsLayerMask;
 
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("There is more than one UnitActionSystem " + transform + " - " + Instance);
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -45,7 +58,7 @@ public class UnitActionSystem : MonoBehaviour
     {
         selectedUnit = unit;
 
-        OnSelectedUnitChange?.Invoke(this, EventArgs.Empty);
+        OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
 
         // Does the same thing as this code would.
         //
