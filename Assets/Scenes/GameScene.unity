@@ -208,8 +208,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.52465236, y: 0.0027930734, z: -0.0017249656, w: -0.85131025}
-  m_LocalPosition: {x: 0.49553025, y: 7.6154356, z: -4.7614574}
+  m_LocalRotation: {x: -0.17489292, y: -0.5252055, z: 0.11128261, w: -0.82534105}
+  m_LocalPosition: {x: -7.7493496, y: 3.9678354, z: -1.6362457}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -780,6 +780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e039aa90fefd651aa75a97208b1656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridDebugObjectPrefab: {fileID: 9206717911641225820, guid: f603e7f954416d0589de683d4fcebd3a,
+    type: 3}
 --- !u!4 &2102503952
 Transform:
   m_ObjectHideFlags: 0
